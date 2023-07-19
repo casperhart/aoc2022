@@ -1,0 +1,341 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'd4'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=d4",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d4",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'd4'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=d4",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d4",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'd1'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=d1",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d1",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'd1'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=d1",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d1",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'd5'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=d5",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d5",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'd5'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=d5",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d5",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'd2'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=d2",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d2",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'd2'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=d2",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d2",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'd6'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=d6",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d6",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'd6'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=d6",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d6",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'd7'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=d7",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d7",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'd7'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=d7",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d7",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'd3_2'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=d3_2",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d3_2",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'd3_2'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=d3_2",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d3_2",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'd3'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=d3",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d3",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'd3'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=d3",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d3",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'd8'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=d8",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d8",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'd8'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=d8",
+                    "--package=advent2022"
+                ],
+                "filter": {
+                    "name": "d8",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
