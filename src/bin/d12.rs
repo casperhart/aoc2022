@@ -14,15 +14,57 @@ struct Grid {
 
 impl Display for Grid {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        for row in 0..(self.nodes.len() / self.width) {
-            for col in 0..(self.width) {
-                match self.index((row, col)).distance.get() {
-                    Some(n) => write!(f, "{:0>2}", n % 100)?,
-                    None => write!(f, "--")?,
+        // display two-digit distance for each node that was visited
+        // for row in 0..(self.nodes.len() / self.width) {
+        //     for col in 0..(self.width) {
+        //         match self.index((row, col)).distance.get() {
+        //             Some(n) => write!(f, "{:0>2}", n % 100)?,
+        //             None => write!(f, "--")?,
+        //         }
+        //     }
+        //     writeln!(f)?;
+        // }
+        // Ok(())
+
+        // display solution path through the terrain
+        let mut path_nodes = Vec::new();
+
+        let end = self
+            .nodes
+            .iter()
+            .find(|x| x.node_pos == NodePos::End)
+            .unwrap();
+        path_nodes.push(end);
+        let mut chars = vec!["-"; self.nodes.len()];
+
+        let mut i = 0;
+
+        while let Some(node) = path_nodes.pop() {
+            chars[node.coords.0 * self.width + node.coords.1] = "x";
+            if node.distance.get() == Some(1) {
+                break;
+            }
+            for coord in &node.neighbours {
+                let n = self.index(*coord);
+                if let Some(dist) = n.distance.get() {
+                    if dist == 0 {
+                        break;
+                    }
+                    if dist == node.distance.get().unwrap() - 1 {
+                        path_nodes.push(n);
+                        i += 1;
+                    }
                 }
+            }
+        }
+
+        for row in 0..(self.nodes.len() / self.width) {
+            for col in 0..self.width {
+                write!(f, "{}", chars[row * self.width + col])?;
             }
             writeln!(f)?;
         }
+
         Ok(())
     }
 }
@@ -67,12 +109,28 @@ impl Grid {
 
             nodes.push(TreeNode {
                 elevation,
-                pos: node_pos,
+                node_pos,
                 neighbours,
                 distance: Cell::new(None),
+                crowfly: Cell::new(None),
+                coords: (i / width, i % width),
             });
 
             i += 1;
+        }
+
+        let end = nodes
+            .iter()
+            .position(|x| x.node_pos == NodePos::End)
+            .unwrap();
+
+        let end_coords = (end / width, end % width);
+
+        for node in &nodes {
+            node.crowfly.set(Some(
+                (node.coords.0 as i32 - end_coords.0 as i32).pow(2)
+                    + (node.coords.1 as i32 - end_coords.1 as i32).pow(2),
+            ))
         }
 
         Grid { nodes, width }
@@ -96,9 +154,11 @@ enum NodePos {
 #[derive(PartialEq, Eq)]
 struct TreeNode {
     elevation: u8,
-    pos: NodePos,
+    node_pos: NodePos,
     distance: Cell<Option<usize>>,
     neighbours: Vec<(usize, usize)>,
+    crowfly: Cell<Option<i32>>, // heuristic for A* algorithm
+    coords: (usize, usize),
 }
 
 impl Debug for TreeNode {
@@ -106,12 +166,12 @@ impl Debug for TreeNode {
         write!(
             f,
             "Elevation: {}, Pos: {:?}, Distance: {:?}, Neighbours: {:?}",
-            self.elevation, self.pos, self.distance, self.neighbours
+            self.elevation, self.node_pos, self.distance, self.neighbours
         )
     }
 }
 
-impl std::fmt::Display for TreeNode {
+impl Display for TreeNode {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self.distance.get() {
             Some(d) => write!(f, "{:0>2}", d % 100),
@@ -123,10 +183,10 @@ impl std::fmt::Display for TreeNode {
 impl Ord for TreeNode {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
         other
-            .distance
+            .crowfly
             .get()
             .unwrap()
-            .cmp(&self.distance.get().unwrap())
+            .cmp(&self.crowfly.get().unwrap())
     }
 }
 
@@ -152,10 +212,14 @@ impl TreeNode {
             if iter >= *max_iter {
                 break;
             }
+            let node_dist = node.distance.get().unwrap();
 
-            if node.pos == NodePos::End {
-                dist = node.distance.get().unwrap();
-                break;
+            if node.node_pos == NodePos::End {
+                dist = node_dist;
+            }
+
+            if node_dist >= dist {
+                continue;
             }
 
             for coords in &node.neighbours {
@@ -182,13 +246,13 @@ fn main() {
     let f = read_to_string("d12.txt").unwrap();
     let grid1 = Grid::new(f.clone());
 
-    let max_iter = 1000;
+    let max_iter = usize::MAX;
 
     // part 1
     let start = grid1
         .nodes
         .iter()
-        .filter(|x| x.pos == NodePos::Start)
+        .filter(|x| x.node_pos == NodePos::Start)
         .collect::<Vec<_>>()
         .pop()
         .unwrap();
